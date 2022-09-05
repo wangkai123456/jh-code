@@ -1,0 +1,24 @@
+{
+  "queue": {
+    "prefix": "queue",
+    "body": [
+      "import { Provide, Scope, ScopeEnum } from '@midwayjs/decorator';",
+      "import { BaseCoolQueue, Queue } from '@cool-midway/queue';",
+      "",
+      "/**",
+      " * 队列",
+      " */",
+      "@Queue()",
+      "@Scope(ScopeEnum.Singleton)",
+      "@Provide()",
+      "export abstract class xxxQueue extends BaseCoolQueue {",
+      "  data(job: any, done: any): void {",
+      "    console.log('收到的数据', job.data);",
+      "    done();",
+      "  }",
+      "}",
+      ""
+    ],
+    "description": "cool-admin service代码片段"
+  }
+}
