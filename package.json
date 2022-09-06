@@ -1,7 +1,7 @@
 {
-  "name": "cool-admin",
+  "name": "yh",
   "version": "4.0.0",
-  "description": "cool-admin 一个很酷的通用后台管理系统",
+  "description": "yh后端",
   "private": true,
   "dependencies": {
     "@cool-midway/alipay": "^4.0.4",
@@ -50,10 +50,10 @@
     "node": ">=12.0.0"
   },
   "scripts": {
-    "start": "egg-scripts start --daemon --title=cool-admin-midway --framework=@midwayjs/web --port=8001",
-    "stop": "egg-scripts stop --title=cool-admin-midway",
+    "start": "egg-scripts start --daemon --title=yh --framework=@midwayjs/web --port=8001",
+    "stop": "egg-scripts stop --title=yh",
     "start_build": "npm run build && cross-env NODE_ENV=development midway-bin dev",
-    "docker": "egg-scripts start --title=cool-admin-midway --framework=@midwayjs/web  --sticky",
+    "docker": "egg-scripts start --title=yh --framework=@midwayjs/web  --sticky",
     "dev": "cross-env ets && cross-env NODE_ENV=local TS_NODE_TYPE_CHECK=false TS_NODE_TRANSPILE_ONLY=true midway-bin dev --ts --port=8001 --sticky",
     "test": "midway-bin test",
     "cov": "midway-bin cov",
@@ -76,6 +76,5 @@
     "type": "git",
     "url": ""
   },
-  "author": "cool-js.com",
-  "license": "MIT"
+  "author": "wangkai"
 }

@@ -52,7 +52,7 @@ export class BaseSysLoginService extends BaseService {
    * @param login
    */
   async login(login: LoginDTO) {
-    const { username, captchaId, verifyCode, password } = login;
+    const { username, password } = login;
     // 校验验证码
     // const checkV = await this.captchaCheck(captchaId, verifyCode);
     const checkV = true;
