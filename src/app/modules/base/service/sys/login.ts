@@ -13,10 +13,7 @@ import { BaseSysUserEntity } from '../../entity/sys/user';
 import { Repository } from 'typeorm';
 import { InjectEntityModel } from '@midwayjs/orm';
 import * as md5 from 'md5';
-import { BaseSysRoleService } from './role';
 import * as _ from 'lodash';
-import { BaseSysMenuService } from './menu';
-import { BaseSysDepartmentService } from './department';
 import * as jwt from 'jsonwebtoken';
 import { Context } from 'egg';
 import * as svgToDataURL from 'mini-svg-data-uri';
@@ -31,15 +28,6 @@ export class BaseSysLoginService extends BaseService {
 
   @InjectEntityModel(BaseSysUserEntity)
   baseSysUserEntity: Repository<BaseSysUserEntity>;
-
-  @Inject()
-  baseSysRoleService: BaseSysRoleService;
-
-  @Inject()
-  baseSysMenuService: BaseSysMenuService;
-
-  @Inject()
-  baseSysDepartmentService: BaseSysDepartmentService;
 
   @Inject()
   ctx: Context;
@@ -89,16 +77,6 @@ export class BaseSysLoginService extends BaseService {
       };
 
       // 将用户相关信息保存到缓存
-      const perms = await this.baseSysMenuService.getPerms(roleIds);
-      const departments = await this.baseSysDepartmentService.getByRoleIds(
-        roleIds,
-        user.username === 'admin'
-      );
-      await this.coolCache.set(
-        `admin:department:${user.id}`,
-        JSON.stringify(departments)
-      );
-      await this.coolCache.set(`admin:perms:${user.id}`, JSON.stringify(perms));
       await this.coolCache.set(`admin:token:${user.id}`, result.token);
       await this.coolCache.set(`admin:token:refresh:${user.id}`, result.token);
 

@@ -11,7 +11,6 @@ import { Context } from 'egg';
 import { CoolController, BaseController } from '@cool-midway/core';
 import { LoginDTO } from '../../dto/login';
 import { BaseSysLoginService } from '../../service/sys/login';
-import { BaseSysParamService } from '../../service/sys/param';
 
 /**
  * 不需要登录的后台接口
@@ -21,9 +20,6 @@ import { BaseSysParamService } from '../../service/sys/param';
 export class BaseOpenController extends BaseController {
   @Inject()
   baseSysLoginService: BaseSysLoginService;
-
-  @Inject()
-  baseSysParamService: BaseSysParamService;
 
   @Inject()
   ctx: Context;
@@ -38,14 +34,6 @@ export class BaseOpenController extends BaseController {
   @Get('/eps', { summary: '实体信息与路径' })
   public async getEps() {
     return this.ok(this.eps);
-  }
-
-  /**
-   * 根据配置参数key获得网页内容(富文本)
-   */
-  @Get('/html', { summary: '获得网页内容的参数值' })
-  async htmlByKey(@Query() key: string) {
-    this.ctx.body = await this.baseSysParamService.htmlByKey(key);
   }
 
   /**
